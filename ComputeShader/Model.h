@@ -1,8 +1,10 @@
 #pragma once
 #include <vector>
 #include "ComputeSystem.h"
+#include "Vector4.h"
+#include "Renderer.h"
 
-#define NUM_DEGREE 360
+#define NUM_DEGREE 120
 
 struct Level
 {
@@ -13,7 +15,7 @@ struct Level
 class Model
 {
 public:
-	void Initialize(ComputeSystem* computeSystem);
+	void Initialize(ComputeSystem* computeSystem, Renderer* renderer);
 
 	void Create(int numLevels);
 
@@ -24,6 +26,10 @@ public:
 
 	void BuildVerticies();
 
+	void GenerateToolPath();
+
+	void Update();
+
 private:
 	void LoadComputeShaders();
 
@@ -32,10 +38,19 @@ private:
 	
 	void PrintRaw();
 
+private:
+	ComputeSystem* m_computeSystem;
+	Renderer* m_renderer;
+
 	// x levels
 	std::vector<Level> m_levels;
-	ComputeSystem* m_computeSystem;
+	
 
 	ComputeShader* m_widenShader;
+	ComputeShader* m_buildVertsShader;
+	ComputeShader* m_generateToolPathShader;
+	ComputeShader* m_buildToolPathVertsShader;
+
+	RenderObject* m_toolPathRO;
 };
 

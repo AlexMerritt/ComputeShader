@@ -16,10 +16,9 @@ public:
 
 	GraphicDevice* GetGraphicDevice() { return m_graphicDevice; }
 
-	void CreateField();
 	RenderObject* CreateRenderObject(void* verticies, int numVerts, void* inds, int numInds, std::string vertexShader, std::string fragmentShader);
 
-	void Update();
+	void Update(float dt);
 	void Render();
 
 	void Render(RenderObject* renderObject);
@@ -35,4 +34,6 @@ private:
 	Timer* m_timer;
 
 	std::vector<RenderObject*> m_objs;
+
+	float m_elapsedTime;
 };

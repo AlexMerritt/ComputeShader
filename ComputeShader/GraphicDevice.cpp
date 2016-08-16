@@ -119,7 +119,7 @@ bool GraphicDevice::Initialize(Window * window)
 		m_renderingContext = wglCreateContextAttribsARB(m_deviceContext, 0, attribs);
 		wglMakeCurrent(NULL, NULL);
 		wglDeleteContext(tempContext);
-		wglMakeCurrent(m_deviceContext, m_renderingContext);
+		wglMakeCurrent(m_deviceContext, m_renderingContext); 
 	}
 	else
 	{       //It's not possible to make a GL 3.x context. Use the old style context (GL 2.1 and before)

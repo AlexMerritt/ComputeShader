@@ -24,10 +24,10 @@ bool Renderer::Initialize(Window * window)
 	m_timer = new Timer();
 	m_timer->Initialize();
 
-	//CreateField();
+	m_elapsedTime = 0.0f;
 
 	return true;
-}
+}	
 
 RenderObject * Renderer::CreateRenderObject(void * verticies, int numVerts, void * inds, int numInds, std::string vertexShader, std::string fragmentShader)
 {
@@ -43,16 +43,22 @@ RenderObject * Renderer::CreateRenderObject(void * verticies, int numVerts, void
 	return ro;
 }
 
-void Renderer::Update()
+void Renderer::Update(float dt)
 {
 
-	m_timer->Update();
+	//m_timer->Update();
+
 	//m_camera->Move(Vector3(0, 0, 0.01));
 	//m_camera->Update();
 
-	//CreateField();
+	//Log::Info("Elapsed Time: " + std::to_string(m_timer->GetTime()));
+	m_elapsedTime += dt;
+	float rad = 2;
+	float angle = m_elapsedTime * 0.017f;
 
-	Log::Info("Elapsed Time: " + std::to_string(m_timer->GetTime()));
+	m_camera->SetPosition(Vector3(sin(angle) * rad, 0.75f, cos(angle) * rad));
+	m_camera->SetRotation(Vector3(sin(angle), 0.75f, cos(angle)));
+	m_camera->Update();
 
 }
 

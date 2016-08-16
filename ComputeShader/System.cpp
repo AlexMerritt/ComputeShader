@@ -39,8 +39,8 @@ bool System::Initialize()
 
 	Log::Info("Systems Initialized");
 
-	//m_model = new Model();
-	//m_model->Initialize(m_computeSystem);
+	m_model = new Model();
+	m_model->Initialize(m_computeSystem, m_renderer);
 
 	return true;
 }
@@ -79,8 +79,9 @@ void System::Run()
 
 void System::Update()
 {
-	m_particleSystem->Update(0.0f);
-	m_renderer->Update();
+	//m_particleSystem->Update(0.0f);
+	m_model->Update();
+	m_renderer->Update(0.2f);
 }
 
 void System::Render()
